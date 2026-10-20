@@ -1,50 +1,25 @@
-# Library Management System
+# Library Management System — Website
 
-A Java-based Library Management System built using Java Swing and Data Structures to manage books, issue and return operations, and student waiting lists.
+A responsive browser-based Library Management System demo built with HTML, CSS, and JavaScript. It demonstrates common data structures through library workflows.
 
 ## Features
-
+- Dashboard with catalogue and issue statistics
 - Add and search books
 - Issue and return books
-- Manage waiting lists using FIFO
-- Track recently returned books using LIFO
-- Search books by topic
-- Display book availability
-- Interactive graphical user interface
+- FIFO waiting lists for unavailable books
+- LIFO recently returned history
+- Topic search using a Binary Search Tree
+- Responsive layout for desktop and mobile
 
-## Data Structures Used
+## Run locally
+Open `index.html` in your browser. No build tools are required.
 
-| Data Structure | Purpose |
-|---|---|
-| HashMap | Fast book and student lookup |
-| ArrayList | Store and display books |
-| Queue | Manage waiting lists |
-| Stack | Track recently returned books |
-| Binary Search Tree | Organize topic-based searching |
+## Publish with GitHub Pages
+1. Upload `index.html`, `style.css`, and `script.js` to the root of your GitHub repository.
+2. Open the repository's **Settings → Pages**.
+3. Under **Build and deployment**, select **Deploy from a branch**.
+4. Select branch `main` and folder `/ (root)`, then click **Save**.
+5. Wait for the deployment link to appear in the Pages section.
 
-## Technologies Used
-
-- Java
-- Java Swing
-- Data Structures and Algorithms
-
-## How to Run
-
-1. Install the Java Development Kit (JDK).
-2. Download `LibraryManagementSystem.java`.
-3. Open a terminal in the downloaded file's folder.
-4. Compile the program:
-
-   ```bash
-   javac LibraryManagementSystem.java
-   ```
-
-5. Run the program:
-
-   ```bash
-   java LibraryManagementSystem
-   ```
-
-## Project Purpose
-
-This project demonstrates how data structures can be applied to a practical library management application.
+## Note
+This is a front-end demonstration. Data is held in memory and resets when the page is refreshed. It does not connect to a server or database, and it is separate from the Java Swing application.

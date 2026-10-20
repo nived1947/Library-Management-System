@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-icon">L</div><div><strong>Libra</strong><small>LIBRARY SYSTEM</small></div></div>
+    <nav>
+      <button class="nav-item active" data-page="dashboard">▦ <span>Dashboard</span></button>
+      <button class="nav-item" data-page="books">▤ <span>All Books</span></button>
+      <button class="nav-item" data-page="issue">↗ <span>Issue a Book</span></button>
+      <button class="nav-item" data-page="return">↙ <span>Return a Book</span></button>
+      <button class="nav-item" data-page="waiting">☷ <span>Waiting List</span></button>
+      <button class="nav-item" data-page="topics">⌕ <span>Search by Topic</span></button>
+      <button class="nav-item" data-page="history">◷ <span>Return History</span></button>
+    </nav>
+    <div class="sidebar-bottom"><div class="avatar">L</div><div><strong>Library Admin</strong><small>Management portal</small></div></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar"><div><p class="eyebrow">LIBRARY PORTAL</p><h1 id="page-title">Dashboard</h1></div><div class="top-right"><span class="status-dot"></span><span>System online</span><div class="avatar">LA</div></div></header>
+    <section id="dashboard" class="page">
+      <div class="welcome"><div><p class="eyebrow light">YOUR LIBRARY AT A GLANCE</p><h2>Good day, Librarian.</h2><p>Manage books, track issues, and keep every reader moving.</p></div><div class="welcome-mark">▤</div></div>
+      <div class="stats">
+        <article class="stat-card"><div class="stat-icon purple">▤</div><span>Total titles</span><strong id="stat-books">0</strong><small>Books in catalogue</small></article>
+        <article class="stat-card"><div class="stat-icon blue">↗</div><span>Books issued</span><strong id="stat-issued">0</strong><small>Currently checked out</small></article>
+        <article class="stat-card"><div class="stat-icon amber">☷</div><span>Waiting readers</span><strong id="stat-waiting">0</strong><small>Across all waiting lists</small></article>
+        <article class="stat-card"><div class="stat-icon green">✓</div><span>Available copies</span><strong id="stat-available">0</strong><small>Ready to be borrowed</small></article>
+      </div>
+      <div class="section-heading"><div><p class="eyebrow">QUICK ACTIONS</p><h2>What would you like to do?</h2></div></div>
+      <div class="quick-grid">
+        <button class="quick-card" data-goto="books"><span class="quick-icon purple">＋</span><strong>Add or browse books</strong><small>Manage your catalogue</small><span class="arrow">↗</span></button>
+        <button class="quick-card" data-goto="issue"><span class="quick-icon blue">↗</span><strong>Issue a book</strong><small>Check out a title to a reader</small><span class="arrow">↗</span></button>
+        <button class="quick-card" data-goto="return"><span class="quick-icon green">↙</span><strong>Return a book</strong><small>Return a title or serve a queue</small><span class="arrow">↗</span></button>
+        <button class="quick-card" data-goto="topics"><span class="quick-icon amber">⌕</span><strong>Explore topics</strong><small>Find books by subject</small><span class="arrow">↗</span></button>
+      </div>
+      <div class="section-heading"><div><p class="eyebrow">CATALOGUE PREVIEW</p><h2>Recently added books</h2></div><button class="text-button" data-goto="books">View all books →</button></div>
+      <div id="recent-books" class="book-grid"></div>
+    </section>
+
+    <section id="books" class="page hidden">
+      <div class="page-intro"><div><p class="eyebrow">CATALOGUE</p><h2>All Books</h2><p>Browse, search, and add titles to your library.</p></div><button class="primary" id="open-add">＋ Add a book</button></div>
+      <div class="toolbar"><input id="book-search" placeholder="Search title, author, topic or book ID…"><span id="book-count" class="muted"></span></div>
+      <div class="table-wrap"><table><thead><tr><th>BOOK</th><th>AUTHOR</th><th>TOPIC</th><th>AVAILABILITY</th><th>ID</th></tr></thead><tbody id="book-table"></tbody></table></div>
+    </section>
+
+    <section id="issue" class="page hidden">
+      <div class="page-intro"><div><p class="eyebrow">CHECKOUT DESK</p><h2>Issue a Book</h2><p>Issue an available book or add a reader to its FIFO waiting list.</p></div></div>
+      <div class="form-card"><form id="issue-form"><label>Book<select id="issue-book" required></select></label><label>Reader name<input id="reader-name" required placeholder="Enter reader's name"></label><label>Reader ID<input id="reader-id" required placeholder="e.g. STU-102"></label><button class="primary" type="submit">Issue / Join waiting list</button></form><p class="hint">If no copy is available, the reader is added to the queue. When a book is returned, the first waiting reader receives it automatically.</p></div>
+    </section>
+
+    <section id="return" class="page hidden">
+      <div class="page-intro"><div><p class="eyebrow">CHECK-IN DESK</p><h2>Return a Book</h2><p>Return an issued title. The next waiting reader is served first.</p></div></div>
+      <div class="form-card"><form id="return-form"><label>Issued book<select id="return-book" required></select></label><button class="primary" type="submit">Confirm return</button></form><p class="hint">Recently returned books are recorded using a stack (LIFO).</p></div>
+    </section>
+
+    <section id="waiting" class="page hidden">
+      <div class="page-intro"><div><p class="eyebrow">FIFO QUEUES</p><h2>Waiting Lists</h2><p>Readers waiting for currently unavailable books, in order.</p></div></div>
+      <div id="waiting-content" class="stack-list"></div>
+    </section>
+
+    <section id="topics" class="page hidden">
+      <div class="page-intro"><div><p class="eyebrow">TOPIC EXPLORER</p><h2>Search by Topic</h2><p>Explore titles grouped by subject using the topic index.</p></div></div>
+      <div class="toolbar"><input id="topic-search" placeholder="Try programming, database, algorithms…"></div>
+      <div id="topic-results" class="book-grid"></div>
+    </section>
+
+    <section id="history" class="page hidden">
+      <div class="page-intro"><div><p class="eyebrow">LIFO STACK</p><h2>Recently Returned</h2><p>Most recently returned books appear first.</p></div></div>
+      <div id="history-content" class="stack-list"></div>
+    </section>
+    <footer>Library Management System <span>Built with HTML, CSS & JavaScript · DSA demonstration</span></footer>
+  </main>
+
+  <dialog id="add-dialog"><form id="add-form" method="dialog"><div class="dialog-head"><div><p class="eyebrow">CATALOGUE</p><h2>Add a book</h2></div><button type="button" class="close" id="close-add">×</button></div><label>Book title<input id="new-title" required placeholder="e.g. Clean Code"></label><label>Author<input id="new-author" required placeholder="e.g. Robert C. Martin"></label><label>Topic<input id="new-topic" required placeholder="e.g. Programming"></label><label>Book ID<input id="new-id" required placeholder="e.g. BK-106"></label><label>Copies available<input id="new-copies" type="number" min="1" value="1" required></label><button class="primary full" type="submit">Add to catalogue</button></form></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
